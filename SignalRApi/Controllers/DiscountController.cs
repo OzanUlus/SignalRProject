@@ -39,7 +39,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İndirim bilgisi eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteDiscount(int id)
         {
             var data = _discountService.TGetById(id);
@@ -59,7 +59,7 @@ namespace SignalRApi.Controllers
             });
             return Ok("İndirim bilgisi güncellendi");
         }
-        [HttpGet("GetContact")]
+        [HttpGet("{id}")]
         public IActionResult GetDiscount(int id)
         {
             var data = _discountService.TGetById(id);
