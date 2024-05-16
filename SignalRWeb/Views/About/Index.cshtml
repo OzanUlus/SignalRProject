@@ -1,4 +1,4 @@
-﻿@model List<SignalRWeb.Dtos.CategoryDtos.ResultCategoryDto>
+﻿@model List<ResultAboutDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -6,36 +6,36 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Kategori İşlemleri</h4>
+        <h4 class="page-title">Anasayfa Hakkımızda İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Kategori Listesi</div>
+                        <div class="card-title">Hakkımızda Listesi</div>
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Kategori ile ilgili işlemleri aşağıda gerçekleştirebilirsiniz.
+                           Hakkımızda alanı ile ilgili işlemleri burada yapabilirsiniz. Tema bütünlüğü için sadece 1 adet hakkımızda oluşturmalısınız.
                         </div>
                         <table class="table mt-3">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Kategori Adı</th>
-                                    <th scope="col">Durum</th>
+                                    <th scope="col">Başlık</th>
+                                    <th scope="col">Açıklama</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var category in Model)
+                                @foreach (var about in Model)
                                 {
                                     <tr>
-                                        <td>@category.Id</td>
-                                        <td>@category.Name</td>
-                                        <td>@category.Status</td>
-                                        <td><a href="/Category/DeleteCategory/@category.Id" class="btn btn-outline-danger">Sil</a></td>
-                                        <td><a href="/Category/UpdateCategory/@category.Id" class="btn btn-outline-warning">Güncelle</a></td>
+                                        <td>@about.Id</td>
+                                        <td>@about.Title</td>
+                                        <td>@about.Description</td>
+                                        <td><a href="/About/DeleteAbout/@about.Id" class="btn btn-outline-danger">Sil</a></td>
+                                        <td><a href="/About/UpdateAbout/@about.Id" class="btn btn-outline-warning">Güncelle</a></td>
 
                                     </tr>
                                 }
@@ -43,7 +43,7 @@
 
                             </tbody>
                         </table>
-                        <a href="/Category/CreateCategory" class="btn btn-outline-primary">Ürün Ekle</a>
+                        <a href="/About/CreateAbout" class="btn btn-outline-primary">Hakkımda Ekle</a>
                     </div>
                 </div>
 
@@ -52,4 +52,3 @@
         </div>
     </div>
 </div>
-
