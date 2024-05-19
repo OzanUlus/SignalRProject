@@ -29,22 +29,65 @@ namespace SignalRApi.Controllers
             return Ok(datas);
         }
         [HttpGet("ProductListWithCategory")]
-        public IActionResult ProductListWithCategory() 
+        public IActionResult ProductListWithCategory()
         {
             var contex = new SignalRContext();
-            var datas = contex.Products.Include(p => p.Category).Select(y => new ResultProductWithCategory() 
+            var datas = contex.Products.Include(p => p.Category).Select(y => new ResultProductWithCategory()
             {
-             CategoryName = y.Category.Name,
-             Description = y.Description,
-             ImageUrl = y.ImageUrl,
-             Name = y.Name,
-             Price = y.Price,
-             Status = y.Status,
-             Id = y.Id
-            
+                CategoryName = y.Category.Name,
+                Description = y.Description,
+                ImageUrl = y.ImageUrl,
+                Name = y.Name,
+                Price = y.Price,
+                Status = y.Status,
+                Id = y.Id
+
             });
             return Ok(datas.ToList());
         }
+        [HttpGet("ProductCountByHamburger")]
+        public IActionResult ProductCountByHamburger()
+        {
+            var count = _productService.TProductCountByCategoryNameHamburger();
+            return Ok(count);
+        }
+        [HttpGet("ProductCountByDrink")]
+        public IActionResult ProductCountByDrink()
+        {
+            var count = _productService.TProductCountByCategoryNameDrink();
+            return Ok(count);
+        }
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            var count = _productService.TProductCount();
+            return Ok(count);
+        }
+        [HttpGet("AvgProductPrice")]
+        public IActionResult AvgProductPrice()
+        {
+            var count = _productService.TProductPriceAvg();
+            return Ok(count);
+        }
+        [HttpGet("MaxProductName")]
+        public IActionResult MaxProductName()
+        {
+            var count = _productService.TProductNameByMaxPrice();
+            return Ok(count);
+        }
+        [HttpGet("MinProductName")]
+        public IActionResult MinProductName()
+        {
+            var count = _productService.TProductNameByMinPrice();
+            return Ok(count);
+        }
+        [HttpGet("HamburgerPriceAvg")]
+        public IActionResult HamburgerPriceAvg()
+        {
+            var avgPrice = _productService.THamburgerPriceAvg();
+            return Ok(avgPrice);
+        }
+        
 
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)
@@ -55,9 +98,9 @@ namespace SignalRApi.Controllers
                 ImageUrl = createProductDto.ImageUrl,
                 Name = createProductDto.Name,
                 Price = createProductDto.Price,
-                Status =createProductDto.Status,
+                Status = createProductDto.Status,
                 CategoryId = createProductDto.CategoryId,
-               
+
             });
             return Ok("Product eklendi");
         }
@@ -79,7 +122,7 @@ namespace SignalRApi.Controllers
                 Name = updateProductDto.Name,
                 Price = updateProductDto.Price,
                 Status = updateProductDto.Status,
-                CategoryId= updateProductDto.CategoryId,
+                CategoryId = updateProductDto.CategoryId,
             });
             return Ok("Product güncellendi");
         }
