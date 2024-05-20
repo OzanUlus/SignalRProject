@@ -2,13 +2,9 @@
 
 namespace SignalRWeb.Controllers
 {
-    public class SignalRDefaultController : Controller
+    public class ProgressBarsController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Index2()
         {
             return View();
         }
