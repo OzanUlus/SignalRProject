@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SignalR.DtoLayer.ProductDto;
+using SignalR.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping
 {
@@ -7,11 +8,11 @@ namespace SignalRApi.Mapping
     {
         public ProductMapping()
         {
-            CreateMap<ProductMapping , ResultProductDto>().ReverseMap();
-            CreateMap<ProductMapping , CreateProductDto>().ReverseMap();
-            CreateMap<ProductMapping , UpdateProductDto>().ReverseMap();
-            CreateMap<ProductMapping , ListProductDto>().ReverseMap();
-            CreateMap<ProductMapping , ResultProductWithCategory>().ReverseMap();
+            CreateMap<Product , ResultProductDto>().ReverseMap();
+            CreateMap<Product , CreateProductDto>().ReverseMap();
+            CreateMap<Product , UpdateProductDto>().ReverseMap();
+            CreateMap<Product , ListProductDto>().ReverseMap();
+            CreateMap<Product , ResultProductWithCategory>().ReverseMap();
         }
     }
 }
