@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalR.EntityLayer.Entities
+﻿namespace SignalRWeb.Dtos.NotificationDtos
 {
-    public class Notification
+    public class ResultNotificationDto
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -16,3 +10,4 @@ namespace SignalR.EntityLayer.Entities
         public bool Status { get; set; }
     }
 }
+
