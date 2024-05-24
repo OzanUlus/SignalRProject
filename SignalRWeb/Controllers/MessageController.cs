@@ -8,5 +8,10 @@ namespace SignalRWeb.Controllers
         {
             return View();
         }
+        public IActionResult ClientUserCount() 
+        {
+            return View();
+        }
     }
+   
 }
