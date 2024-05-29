@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -24,6 +25,8 @@
                                     <th scope="col">Ürün</th>
                                     <th scope="col">İndirim Oranı</th>
                                     <th scope="col">Durum</th>
+                                    <th scope="col">Aktif Yap</th>
+                                    <th scope="col">Pasif Yap</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -31,11 +34,14 @@
                             <tbody>
                                 @foreach (var discount in Model)
                                 {
+                                    count++;
                                     <tr>
-                                        <td>@discount.Id</td>
+                                        <td>@count</td>
                                         <td>@discount.Title</td>
                                         <td>@discount.Amount</td>
-                                        <td><a href="/Discount/DeleteDiscount/@discount.Id" class="btn btn-outline-success">Durum</a></td>
+                                        <td>@discount.Status</td>
+                                        <td><a href="/Discount/ChangeStatusTrue/@discount.Id" class="btn btn-outline-success">Aktifleştir</a></td>
+                                        <td><a href="/Discount/ChangeStatusFalse/@discount.Id" class="btn btn-outline-dark">Pasifleştir</a></td>
                                         <td><a href="/Discount/DeleteDiscount/@discount.Id" class="btn btn-outline-danger">Sil</a></td>
                                         <td><a href="/Discount/UpdateDiscount/@discount.Id" class="btn btn-outline-warning">Güncelle</a></td>
 
