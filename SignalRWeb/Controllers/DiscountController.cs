@@ -17,7 +17,7 @@ namespace SignalRWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7233/api/Discount");
+            var responseMessage = await client.GetAsync("https://localhost:7233/api/Discount/GetListStatusTrue");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

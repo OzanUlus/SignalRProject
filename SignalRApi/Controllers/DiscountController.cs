@@ -81,5 +81,14 @@ namespace SignalRApi.Controllers
             return Ok("status false");
         }
 
+        [HttpGet("GetListStatusTrue")]
+        public IActionResult GetListStatusTrue()
+        {
+            var datas = _discountService.TGetListStatusTrue();
+            return Ok(datas);
+        }
+
+        
+
     }
 }
