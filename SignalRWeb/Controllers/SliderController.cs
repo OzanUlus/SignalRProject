@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SignalRWeb.Controllers
 {
-    public class FeatureController : Controller
+    public class SliderController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeatureController(IHttpClientFactory httpClientFactory)
+        public SliderController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,7 +17,7 @@ namespace SignalRWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7233/api/Feature");
+            var responseMessage = await client.GetAsync("https://localhost:7233/api/Slider");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -27,28 +27,28 @@ namespace SignalRWeb.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateSlider()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto )
+        public async Task<IActionResult> CreateSlider(CreateFeatureDto createFeatureDto )
         {
             
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createFeatureDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7233/api/Feature", content);
+            var responseMessage = await client.PostAsync("https://localhost:7233/api/Slider", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-        public async Task<IActionResult> DeleteFeature(int id)
+        public async Task<IActionResult> DeleteSlider(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7233/api/Feature/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7233/api/Slider/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -56,10 +56,10 @@ namespace SignalRWeb.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> UpdateFeature(int id)
+        public async Task<IActionResult> UpdateSlider(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7233/api/Feature/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7233/api/Slider/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -69,12 +69,12 @@ namespace SignalRWeb.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto )
+        public async Task<IActionResult> UpdateSlider(UpdateFeatureDto updateFeatureDto )
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMassage = await client.PutAsync("https://localhost:7233/api/Feature", stringContent);
+            var responseMassage = await client.PutAsync("https://localhost:7233/api/Slider", stringContent);
             if (responseMassage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
