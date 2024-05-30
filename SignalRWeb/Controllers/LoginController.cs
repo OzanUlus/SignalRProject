@@ -10,10 +10,12 @@ namespace SignalRWeb.Controllers
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public LoginController(SignInManager<AppUser> signInManager)
+        public LoginController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -30,6 +32,12 @@ namespace SignalRWeb.Controllers
                 return RedirectToAction("Index", "Category");
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut() 
+        {
+          await _signInManager.SignOutAsync();
+            return RedirectToAction("Index","Login");
         }
     }
 }
