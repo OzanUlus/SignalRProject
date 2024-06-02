@@ -12,5 +12,6 @@ namespace SignalR.DataAccessLayer.Abstract
          int CategoryCount();
          int ActiveCategoryCount();
          int PasiveCategoryCount();
+        
     }
 }

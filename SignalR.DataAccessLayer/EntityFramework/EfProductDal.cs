@@ -78,6 +78,27 @@ namespace SignalR.DataAccessLayer.EntityFramework
             
         }
 
-       
+        public decimal ProductPriceBySteakHamburger()
+        {
+            using var context =new SignalRContext();
+            var price = context.Products.Where(p => p.Name == "Stack Burger").Select(p => p.Price).FirstOrDefault();
+            return price;
+        }
+
+        public decimal TotalPriceByDrinkCategory()
+        {
+            using var context = new SignalRContext();
+            int id = context.Categories.Where(c => c.Name == "İçecek").Select(c => c.Id).FirstOrDefault();
+            var totalPrice = context.Products.Where(p => p.CategoryId == id).Sum(p => p.Price);
+            return totalPrice;
+        }
+
+        public decimal TotalPriceBySaladCategory()
+        {
+            using var context = new SignalRContext();
+            int id = context.Categories.Where(c => c.Name == "Salata").Select(c => c.Id).FirstOrDefault();
+            var totalPrice = context.Products.Where(p => p.CategoryId == id).Sum(p => p.Price);
+            return totalPrice;
+        }
     }
 }
